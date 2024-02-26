@@ -1,0 +1,6 @@
+openai
+google-cloud-vision
+chainlit
+Flask
+langchain_openai
+langchain
