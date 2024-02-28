@@ -4,3 +4,5 @@ chainlit
 Flask
 langchain_openai
 langchain
+chromadb
+opensearch-py

@@ -25,6 +25,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY .chainlit .chainlit/
 COPY db db/
 COPY public public/
+COPY knowledge knowledge/
 COPY app.py .
 COPY vision.json .
 COPY chainlit.md .

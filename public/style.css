@@ -5,3 +5,20 @@
 .MuiBox-root.css-1s3oi5q {
     background-color: #efefef !important;
 }
+
+
+.MuiListItemButton-root.checked {
+    background-color: #e0e0e0; 
+}
+
+.MuiListItemButton-root.checked::before {
+    content: '✓'; 
+    display: block;
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    color: green; 
+    font-size: 24px; 
+}
+
+
