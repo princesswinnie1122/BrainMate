@@ -76,12 +76,12 @@
 
 4. Create a new service, then enter the image URL and edit the container based on your needs
 
-   ![image-20240229163022680](C:\Users\ewinn\AppData\Roaming\Typora\typora-user-images\image-20240229163022680.png)
+   ![edit_container](./images/edit_container.png)
 
 5. Remember to add the environment variables in `.env`
 
-   ![image-20240229163230406](C:\Users\ewinn\AppData\Roaming\Typora\typora-user-images\image-20240229163230406.png)
+   ![env](./images/env.png)
 
 6. Your app should be ready after deployment!
 
-   ![image-20240229163513154](C:\Users\ewinn\AppData\Roaming\Typora\typora-user-images\image-20240229163513154.png)
+   ![env](./images/done.png)
