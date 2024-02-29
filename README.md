@@ -1,6 +1,6 @@
 # BrainMate
 
-![avatar](./public/avatar.png)
+![avatar](./images/logo.png)
 
 ## About
 
