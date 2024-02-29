@@ -1,26 +1,87 @@
 ## How to use this repo
 
-1. Install Chainlit, Langchain, openai
+1. Clone this repo
 
    ```bash
-   pip install chainlit
-   pip install langchain
-   pip install openai
+   git clone https://github.com/princesswinnie1122/BrainMate.git
    ```
 
-2. Clone the repo, then add a `.env` file that includes
+2. Add an `.env` file that includes: 
 
    ```bash
    OPENAI_API_KEY=
    CHAINLIT_AUTH_SECRET=
+   LITERAL_API_KEY=
+   GOOGLE_APPLICATION_CREDENTIALS=/chainlit-gcp/vision.json
    ```
 
-   You can generate `CHAINLIT_AUTH_SECRET` using `chainlit create-secret`.
+   - `OPENAI_API_KEY`：get an API key [here](https://platform.openai.com/docs/overview)
+   - `CHAINLIT_AUTH_SECRET`：generate with `chainlit create-secret`
+   - `LITERAL_API_KEY`：follow [this instruction](https://docs.chainlit.io/data-persistence/overview)
 
-3. Run the application in its directory (contains `app.py`)
+3. Modify the <names> in the below commands yourself.
+
+### Run locally
+
+1. Install dependencies
+
+   ```bash
+   pip install --no-cache-dir -r requirements.txt
+   ```
+
+2. Run the app in root directory (contains `app.py`)
 
    ```bash
    chainlit run app.py -w
    ```
 
-   Your chatbot should now be accessible at [http://localhost:8000](http://localhost:8000/).
+   Your app should now be accessible at [http://localhost:8000](http://localhost:8000/).
+
+### Run with Docker
+
+1. Put all folders and files in another folder (container)
+
+2. Build docker image (in the container)
+
+   ```bash
+   docker build -t brainmate .
+   ```
+
+3. Test running it locally
+
+   ```bash
+   docker run -p 8000:8000 `
+     --env-file .env `
+     --name chainlit-gcp-container `
+     brainmate
+   ```
+
+   Your app should now be accessible at [http://localhost:8000](http://localhost:8000/).
+
+### Deploy to Google Cloud Run
+
+1. Set up your GCP project and service account with gcloud CLI
+
+2. Tag the image
+
+   ```bash
+   docker tag brainmate:latest asia-east1-docker.pkg.dev/brainmate-415212/chainlit-repo/brainmate:latest
+   ```
+
+3. Push the image
+
+   ```
+   docker push asia-east1-docker.pkg.dev/brainmate-415212/chainlit-repo/brainmate:latest
+   ```
+
+4. Create a new service, then enter the image URL and edit the container based on your needs
+
+   ![image-20240229163022680](C:\Users\ewinn\AppData\Roaming\Typora\typora-user-images\image-20240229163022680.png)
+
+5. Remember to add the environment variables in `.env`
+
+   ![image-20240229163230406](C:\Users\ewinn\AppData\Roaming\Typora\typora-user-images\image-20240229163230406.png)
+
+6. Your app should be ready after deployment!
+
+   ![image-20240229163513154](C:\Users\ewinn\AppData\Roaming\Typora\typora-user-images\image-20240229163513154.png)
