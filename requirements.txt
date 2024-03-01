@@ -6,3 +6,4 @@ langchain_openai
 langchain
 chromadb
 opensearch-py
+authlib

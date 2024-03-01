@@ -154,8 +154,8 @@ async def on_chat_start():
     
     # Grade selection buttons
     start_action = [
-        cl.Action(name="start", value="pass", label="直接開始"),
-        cl.Action(name="start", value="select", label="選擇年級"),
+        cl.Action(name="start", value="pass", label="開始提問"),
+        cl.Action(name="start", value="select", label="選擇教材"),
         cl.Action(name="start", value="upload", label="閱讀PDF"),
         cl.Action(name="start", value="tasks", label="任務清單"),
     ]
@@ -340,6 +340,7 @@ async def on_message(message: cl.Message):
     msg = cl.Message(content=random_loading_message)
     await msg.send()
     '''
+
 
 #Authentication
 @cl.password_auth_callback
