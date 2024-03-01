@@ -268,11 +268,11 @@ async def on_message(message: cl.Message):
                 # print('path' + file.path)
                 ocr = client.text_detection(image=image)
                 texts = ocr.text_annotations
-                print(texts)
+                # print(texts)
                 if texts:
                     all_messages += " " + texts[0].description
 
-    print(all_messages)
+    # print(all_messages)
 
     if start == "tasks":
 

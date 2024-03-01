@@ -90,17 +90,14 @@
    docker push asia-east1-docker.pkg.dev/brainmate-415212/chainlit-repo/brainmate:latest
    ```
 
-4. Create a new service, then enter the image URL and edit the container based on your needs
+4. Create a new service, then enter the image URL and edit the container based on your needs. Remember to add the environment variables.
 
    ![edit_container](./images/edit_container.png)
-
-5. Remember to add the environment variables in `.env`
-
-   ![env](./images/env.png)
 
 6. Your app should be ready after deployment!
 
    ![env](./images/done.png)
 
+------
 
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License. You can view a copy of this license at https://creativecommons.org/licenses/by-nd/4.0/
