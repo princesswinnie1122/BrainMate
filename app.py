@@ -47,8 +47,8 @@ from langchain_community.embeddings.sentence_transformer import (
 from knowledge.loader import load_and_process_documents
 
 # Set up the OpenAI client
-api_key = os.getenv("OPENAI_API_KEY")
-client = AsyncOpenAI(api_key=api_key)
+#api_key = os.getenv("OPENAI_API_KEY")
+
 
 # Define allowed MIME types
 allowed_mime = [
@@ -113,8 +113,12 @@ class DictToObject:
 
 # Resume conversation
 def setup_runnable():
+    user_env = cl.user_session.get("env")
+    api_key = user_env.get("OPENAI_API_KEY")
+    client = AsyncOpenAI(api_key=api_key)
+
     memory = cl.user_session.get("memory")  # type: ConversationBufferMemory
-    model = ChatOpenAI(api_key=api_key, streaming=True, model_name="gpt-4")
+    model = ChatOpenAI(api_key=api_key , streaming=True, model_name="gpt-4")
     prompt = ChatPromptTemplate.from_messages(
         [
             (
@@ -140,6 +144,21 @@ def extract_tasks(ai_response):
     pattern = r'^\s*(?:\d+\.\s*|-)\s*(.*)'
     # Extract matching tasks using the regular expression
     return re.findall(pattern, ai_response, re.MULTILINE)
+
+@cl.set_chat_profiles
+async def chat_profile():
+    return [
+        cl.ChatProfile(
+            name="GPT-3.5",
+            markdown_description="The underlying LLM model is **GPT-3.5**.",
+            #icon="https://picsum.photos/200",
+        ),
+        cl.ChatProfile(
+            name="GPT-4",
+            markdown_description="The underlying LLM model is **GPT-4**.",
+            #icon="https://picsum.photos/250",
+        ),
+    ]
 
 # Start the Chainlit client
 @cl.on_chat_start
@@ -360,3 +379,12 @@ def auth_callback(username: str, password: str):
         )
     else:
         return None
+
+@cl.oauth_callback
+def oauth_callback(
+  provider_id: str,
+  token: str,
+  raw_user_data: Dict[str, str],
+  default_user: cl.User,
+) -> Optional[cl.User]:
+  return default_user
